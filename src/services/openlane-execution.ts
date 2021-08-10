@@ -4,6 +4,7 @@ import * as fs from "fs";
 import * as chokidar from "chokidar";
 import * as readline from "readline";
 import { Op } from "sequelize";
+import  constants from "../utils";
 
 /**
  * @class ResourceService
@@ -50,6 +51,8 @@ export default class OpenlaneExecution extends MicroService {
                 args["type"] = "regular";
                 args["design-dir"] = jobDesignDirectoryPath;
                 args["design-name"] = `${jobDetails.designName}`;
+                args["input-bucket"] = constants.INPUT_BUCKET;
+                args["output-bucket"] = constants.OUTPUT_BUCKET;
                 args["tag"] = tag;
                 args["threads"] = 1;
                 args["cpus"] = 1;
@@ -59,6 +62,8 @@ export default class OpenlaneExecution extends MicroService {
                 args["type"] = jobDetails.type;
                 args["design-dir"] = jobDesignDirectoryPath;
                 args["design-name"] = `${jobDetails.designName}`;
+                args["input-bucket"] = constants.INPUT_BUCKET;
+                args["output-bucket"] = constants.OUTPUT_BUCKET;
                 args["threads"] = 4;
                 args["tag"] = tag;
                 args["cpus"] = 4;
