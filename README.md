@@ -295,11 +295,15 @@ After using the openlane-singularity-build to build the openlane singularity con
     cat > ./.env <<ENV_FILE
     GOOGLE_APPLICATION_CREDENTIALS="service_account.json"
     env="dev"
+    INPUT_BUCKET="clean-cloudrunner-singularity"
+    OUTPUT_BUCKET="clean-cloudrunner.appspot.com"
     PORT=3030
     MAILER_PASS="test"
     JOB_CONCURRENCY=10
     ENV_FILE
     ```
+    Where `INPUT_BUCKET` is the `SINGULARITY_REPO` created in earlier steps.
+    
 11. Get your service_account file from firebase console and place in root directory
 12. Run docker-compose:
     ```shell script
