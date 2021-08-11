@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as chokidar from "chokidar";
 import * as readline from "readline";
 import { Op } from "sequelize";
-import  constants from "../utils";
+import  { constants } from "../utils";
 
 /**
  * @class ResourceService
