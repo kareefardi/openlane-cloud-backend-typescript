@@ -14,18 +14,22 @@ export const jobController = async (req, res) => {
 
     // TODO:Missing step validate repository
 
-    const jobService = await Job.getInstance();
-    let job = await jobService.createJob(userUUID, jobDetails);
-    job = job.get({plain: true});
+    const jobsDetails = await Job.flattenJobsDetails(jobDetails)
+    for (var jobDetails in jobsDetails) {
+        const jobService = await Job.getInstance();
+        let job = await jobService.createJob(userUUID, jobDetails);
+        job = job.get({ plain: true });
 
-    if (jobDetails.regressionScript) {
-        job.regressionScript = jobDetails.regressionScript;
-        console.log(job);
+        if (jobDetails.regressionScript) {
+            job.regressionScript = jobDetails.regressionScript;
+            console.log(job);
+        }
+
+        await jobService.publish(job)
+            .then(() => logger.info(`Job Service:: Published new job [${job.id}]`));
+        res.status(statusCode.CREATED_201).send();
     }
 
-    await jobService.publish(job)
-        .then(() => logger.info(`Job Service:: Published new job [${job.id}]`));
-    res.status(statusCode.CREATED_201).send();
 };
 
 export const jobCancelController = async (req, res) => {

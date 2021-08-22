@@ -46,6 +46,26 @@ export default class Job {
     }
 
 
+    async flattenJobs(jobsDetails) {
+        var designs = jobsDetails.designs
+        let jobs = [];
+        for (var design in designs) {
+            var job = {
+                designName: design.designName,
+                repoURL: design.repoURL,
+                pdkVariant: design.pdkVariant
+            }
+            for (var key in jobsDetails) {
+                var value = jobsDetails[key]
+                if (key != "designs") {
+                    job[key] = value
+                }
+            }
+            jobs.push(job)
+        }
+        return jobs
+    }
+
     async publish(msg) {
         try {
             await this.jobProducer.publish({
