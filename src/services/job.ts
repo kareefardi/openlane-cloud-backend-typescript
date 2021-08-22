@@ -46,19 +46,20 @@ export default class Job {
     }
 
 
-    async flattenJobs(jobsDetails) {
+    async flattenJobsDetails(jobsDetails) {
         var designs = jobsDetails.designs
         let jobs = [];
-        for (var design in designs) {
+        for (var i in designs) {
             var job = {
-                designName: design.designName,
-                repoURL: design.repoURL,
-                pdkVariant: design.pdkVariant
+                designName: designs[i].designName,
+                repoURL: designs[i].repoURL,
+                pdkVariant: designs[i].pdkVariant
             }
             for (var key in jobsDetails) {
                 var value = jobsDetails[key]
+                var value_copy = JSON.parse(JSON.stringify(value))
                 if (key != "designs") {
-                    job[key] = value
+                    job[key] = value_copy
                 }
             }
             jobs.push(job)
