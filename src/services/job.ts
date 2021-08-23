@@ -48,13 +48,13 @@ export default class Job {
 
     async flattenJobsDetails(jobsDetails) {
         const designs = jobsDetails.designs;
-        let jobs = [];
+        const jobs = [];
         for (const i in designs) {
-            let job = {
+            const job = {
                 designName: designs[i].designName,
                 repoURL: designs[i].repoURL,
                 pdkVariant: designs[i].pdkVariant
-            }
+            };
             for (const key in jobsDetails) {
                 const value = jobsDetails[key];
                 const value_copy = JSON.parse(JSON.stringify(value));
@@ -64,7 +64,7 @@ export default class Job {
             }
             jobs.push(job);
         }
-        return jobs
+        return jobs;
     }
 
     async publish(msg) {

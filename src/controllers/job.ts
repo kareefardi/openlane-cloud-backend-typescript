@@ -15,7 +15,7 @@ export const jobController = async (req, res) => {
     // TODO:Missing step validate repository
 
     const jobsDetails = await Job.flattenJobsDetails(jobDetails);
-    for (let jobDetails in jobsDetails) {
+    for (const jobDetails in jobsDetails) {
         const jobService = await Job.getInstance();
         let job = await jobService.createJob(userUUID, jobDetails);
         job = job.get({ plain: true });
