@@ -48,9 +48,9 @@ export default class Job {
 
     async flattenJobsDetails(jobsDetails) {
         const designs = jobsDetails.designs;
-        const jobs = [];
+        const jobs: Array<Record<string, string>> = [];
         for (const i in designs) {
-            const job = {
+            const job: Record<string, string> = {
                 designName: designs[i].designName,
                 repoURL: designs[i].repoURL,
                 pdkVariant: designs[i].pdkVariant
