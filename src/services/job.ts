@@ -46,7 +46,7 @@ export default class Job {
     }
 
 
-    public static async flattenjobsdetails(jobsDetails) {
+    public static async flattenJobsDetails(jobsDetails) {
         const designs = jobsDetails.designs;
         const jobs: Array<Record<string, string>> = [];
         for (const i in designs) {
