@@ -16,6 +16,9 @@ while [ $# -gt 0 ]; do
     --type=*)
       type="${1#*=}"
       ;;
+    --config=*)
+      config="${1#*=}"
+      ;;
     --tag=*)
       tag="${1#*=}"
       ;;
@@ -49,7 +52,7 @@ cd /apps/openlane || \
 module load singularity/3.7.3
     case "$type" in
     regular)
-        srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --threads "$threads" --disable_timestamp --clean
+        srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --threads "$threads" --disable_timestamp --clean --config "$config"
       ;;
     exploratory)
         srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --regression "$regression_script" --threads "$threads" --disable_timestamp --clean

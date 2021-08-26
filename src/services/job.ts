@@ -35,6 +35,7 @@ export default class Job {
         const job = await database()["job"].create({
             userUUID: userUUID,
             designName: jobDetails.designName,
+            config: jobDetails.config,
             repoURL: jobDetails.repoURL,
             type: jobDetails.type,
             pdkVariant: jobDetails.pdkVariant,
@@ -53,7 +54,8 @@ export default class Job {
             const job: Record<string, string> = {
                 designName: designs[i].designName,
                 repoURL: designs[i].repoURL,
-                pdkVariant: designs[i].pdkVariant
+                pdkVariant: designs[i].pdkVariant,
+                config: designs[i].config
             };
             for (const key in jobsDetails) {
                 const value = jobsDetails[key];
