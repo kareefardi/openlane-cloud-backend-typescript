@@ -46,6 +46,27 @@ export default class Job {
     }
 
 
+    public static async flattenJobsDetails(jobsDetails) {
+        const designs = jobsDetails.designs;
+        const jobs: Array<Record<string, string>> = [];
+        for (const i in designs) {
+            const job: Record<string, string> = {
+                designName: designs[i].designName,
+                repoURL: designs[i].repoURL,
+                pdkVariant: designs[i].pdkVariant
+            };
+            for (const key in jobsDetails) {
+                const value = jobsDetails[key];
+                const value_copy = JSON.parse(JSON.stringify(value));
+                if (key != "designs") {
+                    job[key] = value_copy;
+                }
+            }
+            jobs.push(job);
+        }
+        return jobs;
+    }
+
     async publish(msg) {
         try {
             await this.jobProducer.publish({
