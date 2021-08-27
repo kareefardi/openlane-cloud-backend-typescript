@@ -27,12 +27,12 @@ export default class Git extends MicroService {
 
 
     svnFormat(repoURL) {
-        const subFolderKeyword = 'tree/master'
-        let formatedUrl = '';
+        const subFolderKeyword = "tree/master";
+        let formatedUrl = "";
         if (repoURL.search(subFolderKeyword) < 0) {
-            formatedUrl = repoURL.replace(subFolderKeyword, 'trunk');
+            formatedUrl = repoURL.replace(subFolderKeyword, "trunk");
         } else {
-            formatedUrl = repoURL.concat('/trunk');
+            formatedUrl = repoURL.concat("/trunk");
         }
         return formatedUrl;
     }
