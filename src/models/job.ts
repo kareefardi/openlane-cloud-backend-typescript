@@ -18,6 +18,7 @@ interface JobAttributes {
     userUUID: string;
     repoURL: string;
     designName: string;
+    config: string;
     type: string;
     pdkVariant: string;
     notificationsEnabled: boolean;
@@ -35,6 +36,7 @@ export class Job extends Model<JobAttributes, JobCreationAttributes>
     public userUUID!: string;
     public repoURL!: string;
     public designName!: string;
+    public config!: string;
     public pdkVariant!: string;
     public type!: string;
     public notificationsEnabled!: boolean;
@@ -81,6 +83,10 @@ export function JobModel(sequelize, DataTypes) {
             },
             repoURL: {
                 type: new DataTypes.STRING(1024),
+                allowNull: false,
+            },
+            config: {
+                type: new DataTypes.STRING(512),
                 allowNull: false,
             },
             designName: {

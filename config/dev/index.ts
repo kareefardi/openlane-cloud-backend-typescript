@@ -5,7 +5,8 @@ export default {
     databases: {
         sqlite: {
             enable: true,
-            database_name: "openlane.sqlite"
+            database_name: "openlane.sqlite",
+            force_drop: false
         },
         redis: {
             enable: true,
