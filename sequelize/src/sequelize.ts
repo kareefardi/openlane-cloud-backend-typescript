@@ -7,10 +7,13 @@ import { logger } from "../../src/utils";
 export default class SequelizeDB extends EventEmitter {
     connection;
     private db: any;
+    private force_drop: boolean;
 
     constructor(config) {
         super();
         this.db = {};
+        this.force_drop = config.force_drop;
+        
         logger.info(`SQLITE_CONNECTOR :: Connecting to SQLITE database`);
         this.connection = new Sequelize({
             dialect: "sqlite",
@@ -50,7 +53,7 @@ export default class SequelizeDB extends EventEmitter {
             }
         });
 
-        await this.connection.sync({force: true});
+        await this.connection.sync({force: this.force_drop});
 
         this.db["sequelize"] = this.connection;
     }

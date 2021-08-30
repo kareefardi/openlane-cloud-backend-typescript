@@ -53,6 +53,7 @@ export default class OpenlaneExecution extends MicroService {
                 args["design-name"] = `${jobDetails.designName}`;
                 args["input-bucket"] = constants.INPUT_BUCKET;
                 args["output-bucket"] = constants.OUTPUT_BUCKET;
+                args["config"] = `${jobDetails.config}`;
                 args["tag"] = tag;
                 args["threads"] = 1;
                 args["cpus"] = 1;

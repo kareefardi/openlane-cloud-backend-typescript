@@ -26,8 +26,19 @@ export default class Git extends MicroService {
     }
 
 
+    svnFormat(repoURL) {
+        const subFolderKeyword = "tree/master";
+        let formatedUrl = "";
+        if (repoURL.search(subFolderKeyword) > 0) {
+            formatedUrl = repoURL.replace(subFolderKeyword, "trunk");
+        } else {
+            formatedUrl = repoURL.concat("/trunk");
+        }
+        return formatedUrl;
+    }
     async cloneRepo(repoURL, jobId, designName) {
-        exec(`git clone ${repoURL} ${this.reposPath}/${jobId}-${designName}`);
+        const formatedUrl = this.svnFormat(repoURL);
+        exec(`svn export ${formatedUrl} ${this.reposPath}/${jobId}-${designName}`);
 
         // const data = fs.readFileSync(`${this.reposPath}/${jobId}-${designName}/config.tcl`, 'utf-8');
         // let newValue = data.replace(/^(set ::env\(DESIGN_NAME\) ").+(")/gm, `$1${jobId}-${designName}$2`);

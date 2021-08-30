@@ -52,7 +52,7 @@ cd /apps/openlane || \
 module load singularity/3.7.3
     case "$type" in
     regular)
-        srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --threads "$threads" --disable_timestamp --clean --config "$config"
+        srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --threads "$threads" --disable_timestamp --clean --config_tag "$config"
       ;;
     exploratory)
         srun singularity run -B $OPEN_LANE_PATH:/openLANE_flow -B $PDK_ROOT:$PDK_ROOT --env "PDK_ROOT=$PDK_ROOT" "$cb"/openlane.sif python3 run_designs.py --designs "$design_dir" --tag "$tag" --regression "$regression_script" --threads "$threads" --disable_timestamp --clean
