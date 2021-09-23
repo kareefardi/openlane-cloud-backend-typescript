@@ -149,7 +149,7 @@ You will need the following things properly installed on your backend virtual ma
     ```
 13. Build the container:
     ```shell script
-    gcloud builds submit --config=containerbuilder.yaml --substitutions=_SINGULARITY_VERSION=${SINGULARITY_VERSION} --timeout 45m
+    gcloud builds submit --config=containerbuilder.yaml --substitutions=_SINGULARITY_VERSION=${SINGULARITY_VERSION},_SINGULARITY_REPO=${SINGULARITY_REPO} --timeout 45m
     ```
 14. Verify the container build:
 
