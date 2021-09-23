@@ -3,5 +3,5 @@ steps:
   args: ['build', 'openlane.sif', 'openlane.def']
 artifacts:
   objects:
-    location: 'gs://${SINGULARITY_REPO}'
+    location: 'gs://${_SINGULARITY_REPO}'
     paths: ['openlane.sif']
